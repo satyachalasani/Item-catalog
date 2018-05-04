@@ -1,0 +1,117 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+	<div class="row divider green">
+		<div class="col-md-12"></div>
+	</div>
+	<div class="row banner book">
+		<div class="col-md-11 col-md-offset-1 padding-none">
+			<h1>{{ Sections.name }}
+			<figure class="creator">
+				<img src="{{ url_for('static', filename = 'blank_user.gif') }}">
+				<figcaption>{{creator.name}}</figcaption>
+			</figure>
+			</h1>
+
+		</div>
+	</div>
+
+<div class = 'flash'>
+		      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+</div>
+	<div class="row padding-top padding-bottom">
+		<div class="col-md-1"></div>
+
+		<div class="col-md-11 padding-none">
+
+			<a href="{{url_for('editBookSection', Sections_id = Sections.id )}}" class="btn btn-default" id="new-book-item"
+					 class="glyphicon glyphicon-pencil" aria-hidden="true">
+                        Edit BookSection
+				
+			</a>
+			
+        <a href="{{url_for('newBooksS', Sections_id = Sections.id )}}"
+				class="btn btn-default" id="new-book-item">
+					<span class="glyphicon glyphicon-book" aria-hidden="true"></span>Add Book Item
+				
+			</a>
+						<a href="{{url_for('deleteBookSection', Sections_id = Sections.id )}}"class="btn btn-default delete" id="delete-Sections">
+					<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete BookSection
+				
+			</a>
+
+		</div>
+		<div class="col-md-7"></div>
+	</div>
+
+	{% if items !=[] %}	
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-3">
+				<h2>Excellent</h2>
+					{% for i in items %}
+						{% if i.rating == 'Excellent' %}
+							<div class="book-item">
+								<h3>{{i.name}}</h3>
+								<p>{{i.description}}</p>
+								<p class="book-price">{{i.price}}</p>
+								<a href="{{url_for('editBookSection', Sections_id = Sections.id, book_id=i.id ) }}">Edit</a> | 
+								<a href="{{url_for('deleteBookSection', Sections_id = Sections.id, book_id=i.id ) }}">Delete</a>
+							</div>
+						{% endif %}
+					{% endfor %}
+			</div>
+			<div class="col-md-4">			
+				<h2>veryGood</h2>
+					{% for i in items %}
+						{% if i.rating == 'veryGood' %}
+						<div class="book-item">
+							<h3>{{i.name}}</h3>
+							<p>{{i.description}}</p>
+							<p class="book-price">{{i.price}}</p>
+							<a href="{{url_for('editBookSection', Sections_id = Sections.id, book_id=i.id ) }}">Edit</a> | 
+							<a href="{{url_for('deleteBookSection', Sections_id = Sections.id, book_id=i.id ) }}">Delete</a>
+						</div>
+						{% endif %}
+					{% endfor %}
+			</div>
+			<div class="col-md-3">
+				<h2>Good</h2>
+					{% for i in items %}
+						{% if i.rating == 'Good' %}
+						<div class="book-item">
+							<h3>{{i.name}}</h3>
+							<p>{{i.description}}</p>
+							<p class="book-price">{{i.price}}</p>
+							<a href="{{url_for('editBookSection', Sections_id = Sections.id, book_id=i.id)}}">Edit</a> | 
+							<a href="{{url_for('deleteBookSection', Sections_id = Sections.id, book_id=i.id ) }}">Delete</a>
+						</div>
+						{% endif %}
+					{% endfor %}
+				<h2>Average</h2>
+					{% for i in items %}
+						{% if i.rating == 'Average' %}
+						<div class="book-item">
+							<h3>{{i.name}}</h3>
+							<p>{{i.description}}</p>
+							<p class="book-price">{{i.price}}</p>
+							<a href="{{url_for('editBookSection', Sections_id = Sections.id, book_id=i.id ) }}">Edit</a> | 
+							<a href="{{url_for('deleteBookSection', Sections_id = Sections.id, book_id=i.id ) }}">Delete</a>
+						</div>
+						{% endif %}
+					{% endfor %}
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+	{% endif %}
+{% endblock %}
