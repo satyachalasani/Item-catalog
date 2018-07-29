@@ -37,4 +37,4 @@ $ python project.py
 
 > Then navigate to localhost:5000 on your favorite browser.
 
-> Once you are done, terminate the web server using _CTRL+C_ in the terminal running...
+> Once you are done, terminate the web server using _CTRL+C_ in the terminal running.
